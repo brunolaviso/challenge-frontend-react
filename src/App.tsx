@@ -1,13 +1,9 @@
-import Header from './components/Header'
-import Cover from './components/Cover'
+import { FC } from 'react';
 
-const App: React.FC = () => {
-  return (
-    <>
-      <Header />
-      <Cover />
-    </>
-  );
-}
+import Router from './routes';
+
+const App: FC = () => (
+  <Router />
+);
 
 export default App;
