@@ -1,8 +1,12 @@
-import './styles/css/reset.css';
+import Header from './components/Header'
+import Cover from './components/Cover'
 
-const App:React.FC = () => {
+const App: React.FC = () => {
   return (
-    <h1>Challenge Frontend React</h1>
+    <>
+      <Header />
+      <Cover />
+    </>
   );
 }
 
