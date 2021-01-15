@@ -1,10 +1,15 @@
 import { FC } from 'react';
 import css from './Cover.module.scss';
 
-const Cover: FC = () => (
+type ICover = {
+  title?: string
+}
+
+const Cover: FC<ICover> = ({ title, children }) => (
   <div className={css.Cover}>
     <div className={`container ${css.C__Itens}`}>
-      <h2 className={css.CI__Title}>Explore the most powerful characters in Marvel</h2>
+      <h2 className={css.CI__Title}>{title}</h2>
+      {children}
     </div>
   </div>
 );
