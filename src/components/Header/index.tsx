@@ -4,7 +4,7 @@ import css from './Header.module.scss';
 import logo from '../../assets/logo.svg';
 import users from '../../assets/users.svg';
 
-const Header:FC = () => (
+const Header: FC = () => (
   <div className={css.Menu}>
     <div className={`container ${css.M__Itens}`}>
       <h1 className={css.Mi__Title}>
