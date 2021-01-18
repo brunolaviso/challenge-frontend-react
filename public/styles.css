@@ -47,6 +47,7 @@ body, html {
 }
 body {
 	line-height: 1em;
+	background-color: #E5E5E5;
 }
 .container {
   width: 1200px;
@@ -56,3 +57,4 @@ body {
 @media screen and (max-width: 1200px) {
   .container { width: 100%; }
 }
+button{ cursor: pointer; }
