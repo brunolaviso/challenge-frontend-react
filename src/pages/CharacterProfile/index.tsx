@@ -1,7 +1,15 @@
 import { FC } from 'react';
 
+import Header from '../../components/Header';
+import Cover from '../../components/Cover';
+import Footer from '../../components/Footer';
+
 const CharacterProfile: FC = () => (
-  <h1>CharacterProfile</h1>
+  <>
+    <Header />
+    <Cover title="Discover all comics this character took part in" />
+    <Footer />
+  </>
 );
 
 export default CharacterProfile;

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 const Team: FC = () => (
   <>
     <Header />
-    <Cover title="Discover all comics this character took part in" />
+    <Cover title="Here is your own strike team choice" />
     <Footer />
   </>
 );
