@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -8,6 +8,15 @@ import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 
 import css from './Home.module.scss';
+
+interface IAPIResponse {
+  data: {
+   limit: number,
+   count: number,
+   offset: number,
+   results: ICharacters[]
+  }
+}
 
 interface ICharacters {
   id: number,
@@ -20,11 +29,15 @@ interface ICharacters {
 }
 
 const Home: FC = () => {
+  const [characters, setCharacters] = useState<ICharacters[]>([]);
+
   useEffect(() => {
-    api.get('comics').then((data) => {
-      console.log('data', data);
+    api.get<IAPIResponse>('characters').then((response) => {
+      setCharacters(response.data.data.results);
     });
   }, []);
+
+  console.log(characters);
 
   return (
     <>
@@ -38,16 +51,13 @@ const Home: FC = () => {
           <small className={css.I__Results}># results</small>
         </div>
         <div className={css.Main}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {characters.map((character) => (
+            <Card
+              name={character.name}
+              description={character.description}
+              thumbnail={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
+            />
+          ))}
         </div>
       </main>
       <Footer />
