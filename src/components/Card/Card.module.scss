@@ -1,6 +1,6 @@
 .Card {
   width: 270px;
-  height: 376px;
+  height: 450px;
 
   background-color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -12,6 +12,18 @@
   flex-direction: column;
 
   transition: transform 0.2s;
+
+  .C__Wrappad {
+    height: 270px;
+    width: 270px;
+    background-size: auto;
+
+    .CW__Img {
+      size: inherit;
+      border-radius: 10px 30px 0 0;
+      width: 270px;
+    }
+  }
 
   .C__Icon {
     width: 54px;
@@ -46,6 +58,6 @@
   }
 }
 
-// .Card:hover {
-//   transform: translateY(-8px);
-// }
+.Card:hover {
+  transform: translateY(-8px);
+}
