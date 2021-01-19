@@ -11,10 +11,11 @@ import css from './Home.module.scss';
 
 interface IAPIResponse {
   data: {
-   limit: number,
-   count: number,
-   offset: number,
-   results: ICharacters[]
+    count: number,
+    limit: number,
+    offset: number,
+    results: ICharacters[],
+    total: number
   }
 }
 
@@ -30,14 +31,19 @@ interface ICharacters {
 
 const Home: FC = () => {
   const [characters, setCharacters] = useState<ICharacters[]>([]);
+  const [limit, setLimit] = useState<number>(20);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    api.get<IAPIResponse>('characters').then((response) => {
+    api.get<IAPIResponse>(`characters?limit=${limit}`).then((response) => {
       setCharacters(response.data.data.results);
+      setTotal(response.data.data.total);
     });
-  }, []);
+  }, [limit]);
 
-  console.log(characters);
+  function handleNextPage() {
+    setLimit(limit + 20);
+  }
 
   return (
     <>
@@ -48,17 +54,19 @@ const Home: FC = () => {
       <main className="container">
         <div className={css.Info}>
           <h2 className={css.I__Title}>Characters</h2>
-          <small className={css.I__Results}># results</small>
+          <small className={css.I__Results}>{`${total} results`}</small>
         </div>
         <div className={css.Main}>
           {characters.map((character) => (
             <Card
+              key={character.id}
               name={character.name}
               description={character.description}
-              thumbnail={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}
+              thumbnail={`${character.thumbnail.path}/standard_fantastic.${character.thumbnail.extension}`}
             />
           ))}
         </div>
+        <button onClick={handleNextPage} type="button">Carregar mais</button>
       </main>
       <Footer />
     </>
