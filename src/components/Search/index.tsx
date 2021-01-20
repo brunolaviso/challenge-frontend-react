@@ -1,13 +1,31 @@
-import { FC } from 'react';
+import { FC, memo, useState } from 'react';
 import css from './Search.module.scss';
 
 import search from '../../assets/search_24px.svg';
 
-const Search: FC = () => (
-  <div className={css.Form}>
-    <input className={css.F__Textbox} type="text" />
-    <button className={css.F__Btn} type="button"><img src={search} alt="Search" /></button>
-  </div>
-);
+interface ISearch {
+  handleSearchData: (data: string) => void
+}
 
-export default Search;
+const Search: FC<ISearch> = ({ handleSearchData }) => {
+  const [inputText, setInputText] = useState<string>('');
+
+  const handleSearchCharacter = () => {
+    handleSearchData(inputText);
+  };
+
+  return (
+    <div className={css.Form}>
+      <input
+        onChange={(e) => { setInputText(e.target.value); }}
+        className={css.F__Textbox}
+        type="text"
+      />
+      <button className={css.F__Btn} onClick={handleSearchCharacter} type="button">
+        <img src={search} alt="Search" />
+      </button>
+    </div>
+  );
+};
+
+export default memo(Search);
