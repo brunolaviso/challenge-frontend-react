@@ -1,4 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import {
+  FC, useCallback, useEffect, useState,
+} from 'react';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -33,6 +35,7 @@ const Home: FC = () => {
   const [characters, setCharacters] = useState<ICharacters[]>([]);
   const [limit, setLimit] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
+  const [value, setValue] = useState<string>('');
 
   useEffect(() => {
     api.get<IAPIResponse>(`characters?limit=${limit}`).then((response) => {
@@ -41,15 +44,27 @@ const Home: FC = () => {
     });
   }, [limit]);
 
-  function handleNextPage() {
+  useEffect(() => {
+    api.get<IAPIResponse>(`characters?name=${value}`).then((response) => {
+      setCharacters(response.data.data.results);
+    });
+  }, [value]);
+
+  const handleNextPage = () => {
     setLimit(limit + 20);
-  }
+  };
+
+  const handleSearchData = useCallback((data: string) => {
+    setValue(data);
+  }, []);
+
+  console.log(value);
 
   return (
     <>
       <Header />
       <Cover title="Explore the most powerful characters in Marvel">
-        <Search />
+        <Search handleSearchData={handleSearchData} />
       </Cover>
       <main className="container">
         <div className={css.Info}>
