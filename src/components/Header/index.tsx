@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import css from './Header.module.scss';
 
@@ -24,4 +24,4 @@ const Header: FC = () => (
   </div>
 );
 
-export default Header;
+export default memo(Header);
