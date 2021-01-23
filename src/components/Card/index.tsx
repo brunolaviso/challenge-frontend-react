@@ -19,8 +19,21 @@ const Card: FC<ICard> = ({ name, description, thumbnail }) => (
       <img src={team} alt="Add in your team" />
     </button>
     <div className={css.C__Details}>
-      <h3 className={css.CD__Title}>{name}</h3>
-      <p className={css.CD__Description}>{description}</p>
+      <h3 className={css.CD__Title} title={name}>{name}</h3>
+      {description.length > 0 ? (
+        <p className={css.CD__Description}>
+          { description.length > 130
+            ? (
+              <>
+                {description.substring(0, 130).concat('... ')}
+                <a href="google.com">read more</a>
+              </>
+            )
+            : (
+              description
+            )}
+        </p>
+      ) : 'Não possui descrição'}
     </div>
   </section>
 );
