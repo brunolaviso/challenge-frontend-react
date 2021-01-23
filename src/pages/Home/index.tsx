@@ -32,15 +32,18 @@ interface ICharacters {
 }
 
 const Home: FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [characters, setCharacters] = useState<ICharacters[]>([]);
   const [limit, setLimit] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
+    setLoading(true);
     api.get<IAPIResponse>(`characters?limit=${limit}`).then((response) => {
       setCharacters(response.data.data.results);
       setTotal(response.data.data.total);
+      setLoading(false);
     });
   }, [limit]);
 
@@ -58,31 +61,34 @@ const Home: FC = () => {
     setValue(data);
   }, []);
 
-  console.log(value);
-
   return (
     <>
       <Header />
       <Cover title="Explore the most powerful characters in Marvel">
         <Search handleSearchData={handleSearchData} />
       </Cover>
+
       <main className="container">
+        {!loading && (
         <div className={css.Info}>
           <h2 className={css.I__Title}>Characters</h2>
           <small className={css.I__Results}>{`${total} results`}</small>
         </div>
+        )}
         <div className={css.Main}>
-          {characters.map((character) => (
+          {loading ? 'Loading' : characters.map((character) => (
             <Card
               key={character.id}
               name={character.name}
               description={character.description}
-              thumbnail={`${character.thumbnail.path}/standard_fantastic.${character.thumbnail.extension}`}
+              thumbnail={`${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`}
             />
           ))}
         </div>
-        <button onClick={handleNextPage} type="button">Carregar mais</button>
+
+        {!loading && <button onClick={handleNextPage} type="button">Carregar mais</button>}
       </main>
+
       <Footer />
     </>
   );
