@@ -1,6 +1,7 @@
 import {
   FC, useCallback, useEffect, useState,
 } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -32,14 +33,14 @@ interface ICharacters {
 }
 
 const Home: FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [characters, setCharacters] = useState<ICharacters[]>([]);
-  const [limit, setLimit] = useState<number>(20);
+  const [limit, setLimit] = useState<number>(24);
   const [total, setTotal] = useState<number>(0);
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     api.get<IAPIResponse>(`characters?limit=${limit}`).then((response) => {
       setCharacters(response.data.data.results);
       setTotal(response.data.data.total);
@@ -54,7 +55,7 @@ const Home: FC = () => {
   }, [value]);
 
   const handleNextPage = () => {
-    setLimit(limit + 20);
+    setLimit(limit + 24);
   };
 
   const handleSearchData = useCallback((data: string) => {
@@ -68,25 +69,49 @@ const Home: FC = () => {
         <Search handleSearchData={handleSearchData} />
       </Cover>
 
-      <main className="container">
-        {!loading && (
-        <div className={css.Info}>
-          <h2 className={css.I__Title}>Characters</h2>
-          <small className={css.I__Results}>{`${total} results`}</small>
-        </div>
-        )}
-        <div className={css.Main}>
-          {loading ? 'Loading' : characters.map((character) => (
-            <Card
-              key={character.id}
-              name={character.name}
-              description={character.description}
-              thumbnail={`${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`}
-            />
-          ))}
+      <main className={`container ${css.Main}`}>
+        {loading
+          ? (
+            <div className={css.M__Info}>
+              <h2 className={css.MI__Title}>
+                <Skeleton width={220} height={48} />
+              </h2>
+              <small className={css.MI__Results}>
+                <Skeleton width={130} height={24} />
+              </small>
+            </div>
+          )
+          : (
+            <div className={css.M__Info}>
+              <h2 className={css.MI__Title}>Characters</h2>
+              <small className={css.MI__Results}>{`${total} results`}</small>
+            </div>
+          )}
+        <div className={css.M__Content}>
+          {loading
+            ? (
+              Array(20).fill(
+                <Skeleton
+                  width={270}
+                  height={376}
+                  style={{
+                    margin: 10,
+                    borderRadius: '10px 30px',
+                  }}
+                />,
+              ).map((skeleton) => skeleton)
+            )
+            : characters.map((character) => (
+              <Card
+                key={character.id}
+                name={character.name}
+                description={character.description}
+                thumbnail={`${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`}
+              />
+            ))}
         </div>
 
-        {!loading && <button onClick={handleNextPage} type="button">Carregar mais</button>}
+        {!loading && <button className={css.M__BtnLoadMore} onClick={handleNextPage} type="button">Carregar mais</button>}
       </main>
 
       <Footer />

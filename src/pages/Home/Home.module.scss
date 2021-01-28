@@ -1,26 +1,59 @@
-.Info {
-  color: #212121;
-
-  margin: 16px 0;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .I__Title {
-    font-size: 2.625rem;
-    font-weight: 700;
-    line-height: 3rem;
-  }
-
-  .I__Results {
-    font-size: 1.5rem;
-  }
-}
-
 .Main {
+  padding: 32px 0;
+
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
+
+  .M__Info {
+    width: 100%;
+
+    color: #212121;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .MI__Title {
+      font-size: 2.625rem;
+      font-weight: 700;
+      line-height: 3rem;
+    }
+
+    .MI__Results {
+      font-size: 1.5rem;
+      line-height: 1em;
+    }
+  }
+
+  .M__Content {
+    width: 100%;
+    margin: 16px 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .M__BtnLoadMore {
+
+    height: 60px;
+    width: 180px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px 20px;
+
+    background-color: #F43735;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    transition-property: background-color;
+    transition-duration: .2s;
+
+    &:hover { background-color: mix(#F43735, #000, 85%); }
+  }
 }
