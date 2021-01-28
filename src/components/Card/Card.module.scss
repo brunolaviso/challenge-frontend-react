@@ -49,13 +49,21 @@
       overflow: hidden;
     }
 
-    .CD__Description {
+    .CD__Description,
+    .CD__NoDescription {
       line-height: 1.2rem;
-      height: 100px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+    }
+
+    .CD__Description {
+      // height: 100px;
+      // overflow: hidden;
+      // display: -webkit-box;
+      // -webkit-line-clamp: 3;
+      // -webkit-box-orient: vertical;
+    }
+
+    .CD__NoDescription {
+      color: #cacaca;
     }
   }
 }

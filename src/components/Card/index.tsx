@@ -20,20 +20,22 @@ const Card: FC<ICard> = ({ name, description, thumbnail }) => (
     </button>
     <div className={css.C__Details}>
       <h3 className={css.CD__Title} title={name}>{name}</h3>
-      {description.length > 0 ? (
-        <p className={css.CD__Description}>
-          { description.length > 130
-            ? (
-              <>
-                {description.substring(0, 130).concat('... ')}
-                <a href="google.com">read more</a>
-              </>
-            )
-            : (
-              description
-            )}
-        </p>
-      ) : 'Não possui descrição'}
+      {description.length > 0
+        ? (
+          <p className={css.CD__Description} title={description}>
+            { description.length > 130
+              ? (
+                <>
+                  {description.substring(0, 130).concat('... ')}
+                  <a href="google.com">read more</a>
+                </>
+              )
+              : (
+                description
+              )}
+          </p>
+        )
+        : <p className={css.CD__NoDescription}>Has no description.</p>}
     </div>
   </section>
 );
