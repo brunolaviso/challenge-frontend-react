@@ -24,8 +24,9 @@
     border-radius: 0 5px 20px 0;
 
     transition-property: background-color;
-    transition-duration: .3s;
+    transition-duration: .2s;
+
+    &:hover { background-color: mix(#F43735, #000, 85%); }
   }
 
-  .F__Btn:hover { background-color: mix(#F43735, #000, 85%); }
 }
