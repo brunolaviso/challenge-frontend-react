@@ -6,7 +6,6 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px 30px;
   color: #212121;
-  margin: 10px;
 
   display: flex;
   flex-direction: column;
@@ -47,11 +46,13 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      text-align: start;
     }
 
     .CD__Description,
     .CD__NoDescription {
-      line-height: 1.2rem;
+      font: 400 1rem/1.1em 'Roboto', sans-serif;
+      text-align: start;
     }
 
     .CD__Description {
