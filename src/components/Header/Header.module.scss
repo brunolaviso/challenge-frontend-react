@@ -43,6 +43,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &:hover { background-color: mix(#F43735, #000, 85%); }
     }
 
     .Mib__Img {
