@@ -56,4 +56,14 @@
 
     &:hover { background-color: mix(#F43735, #000, 85%); }
   }
+
+  .MC__btn {
+    text-decoration: none;
+    border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+
+    margin: 10px;
+  }
 }
