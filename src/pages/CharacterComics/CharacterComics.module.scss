@@ -1,0 +1,34 @@
+.Main {
+  margin-top: 32px;
+
+  .M__Info {
+    width: 100%;
+    margin-top: 100px;
+
+    color: #212121;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .MI__Title {
+      font-size: 2.625rem;
+      font-weight: 700;
+      line-height: 3rem;
+    }
+
+    .MI__Results {
+      font-size: 1.5rem;
+      line-height: 1em;
+    }
+  }
+
+  .M__Character {
+    margin-top: -100px;
+    width: 100%;
+  }
+
+  // .M__Content {
+  //   margin: px 0;
+  // }
+}
