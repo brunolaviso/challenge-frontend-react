@@ -5,6 +5,7 @@ import search from '../../assets/search_24px.svg';
 
 interface ISearch {
   handleSearchData: (data: string) => void
+  hasMore?: boolean
 }
 
 const Search: FC<ISearch> = ({ handleSearchData }) => {
@@ -15,7 +16,13 @@ const Search: FC<ISearch> = ({ handleSearchData }) => {
   };
 
   return (
-    <div className={css.Form}>
+    <form
+      className={css.Form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSearchData(inputText);
+      }}
+    >
       <input
         onChange={(e) => { setInputText(e.target.value); }}
         className={css.F__Textbox}
@@ -24,7 +31,7 @@ const Search: FC<ISearch> = ({ handleSearchData }) => {
       <button className={css.F__Btn} onClick={handleSearchCharacter} type="button">
         <img src={search} alt="Search" />
       </button>
-    </div>
+    </form>
   );
 };
 
