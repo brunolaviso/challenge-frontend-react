@@ -28,12 +28,13 @@
       line-height: 1.1em;
     }
 
-    .CI__Description {
+    .CI__Description,
+    .CI__NoDescription {
       margin-top: 32px;
       font-size: 1.4rem;
       line-height: 1.1;
     }
+
+    .CI__NoDescription { color: #cacaca; }
   }
-
-
 }
