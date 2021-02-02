@@ -3,14 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Team from '../pages/Team';
-import CharacterProfile from '../pages/CharacterComics';
+import CharacterComics from '../pages/CharacterComics';
 
 const Router: FC = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/team" exact component={Team} />
-      <Route path="/character" exact component={CharacterProfile} />
+      <Route path="/characters/:name/comics" exact component={CharacterComics} />
     </Switch>
   </BrowserRouter>
 );
