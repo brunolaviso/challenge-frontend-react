@@ -4,19 +4,31 @@
   .C__Itens {
     height: 450px;
     min-width: 650px;
-    // width: 50%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+
+    position: relative;
+
+    @media screen and (max-width: 780px) {
+      min-width: 100%;
+    }
+
+    .CI__BackIcon {
+      position: absolute;
+      top: 32px;
+      left: 8px;
+
+      width: 32px;
+    }
 
     .CI__Title {
       color: #fff;
       font-size: 2.625rem;
       font-weight: 700;
       line-height: 3rem;
-      width: 60%;
 
       align-self: flex-start;
     }
