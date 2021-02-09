@@ -1,0 +1,33 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  margin-top: -156px;
+
+  .M__Content {
+    width: 100%;
+    margin: 16px 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @media screen and (max-width: 780px) {
+    justify-content: center;
+    }
+
+
+    .MC__btn {
+      text-decoration: none;
+      border: 0;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      outline: none;
+
+      margin: 10px;
+      z-index: 1;
+
+    }
+  }
+}
