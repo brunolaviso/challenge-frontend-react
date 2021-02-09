@@ -16,7 +16,7 @@ const Header: FC = () => (
       </Link>
       <Link className={css.Link} to="/team">
         <button className={css.Mi__Btn} type="button">
-          Your Team
+          <span className={css.Mib__Text}>Your Team</span>
           <img className={css.Mib__Img} src={users} alt="Users icon" />
         </button>
       </Link>

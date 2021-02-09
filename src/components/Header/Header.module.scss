@@ -20,14 +20,14 @@
     .Mi__Title {
       font-weight: 700;
       font-size: 2.25rem;
-      line-height: 2.25rem;
+      line-height: 1em;
 
       display: flex;
       align-items: center;
-    }
 
-    .Mit__Img {
-      margin-right: 16px;
+      .Mit__Img {
+        margin-right: 16px;
+      }
     }
 
     .Mi__Btn {
@@ -43,13 +43,39 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      outline: none;
 
       &:hover { background-color: mix(#F43735, #000, 85%); }
-    }
 
-    .Mib__Img {
-      margin-left: 8px;
+      .Mib__Img {
+        margin-left: 8px;
+      }
     }
   }
 }
+
+@media screen and (max-width: 780px) {
+  .Menu {
+    .M__Itens {
+      .Mi__Btn {
+        height: 64px;
+        width: 64px;
+        .Mib__Text { display: none; }
+        .Mib__Img { margin-left: 0; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .Menu {
+    .M__Itens {
+      .Mi__Title { font-size: 1.8rem;
+        .Mit__Img { margin-right: 16px; }
+      }
+    }
+  }
+}
+
+
 
