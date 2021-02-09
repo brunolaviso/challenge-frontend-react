@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   FC, useCallback, useEffect, useState,
 } from 'react';
@@ -36,31 +35,30 @@ interface ICharacters {
 }
 
 const Home: FC = () => {
-  const [characters, setCharacters] = useState<ICharacters[]>([]);
-  // const [charactersSearch, setCharactersSearch] = useState<ICharacters[]>([]);
-  const [offset, setOffset] = useState<number>(0);
-
   const [loading, setLoading] = useState<boolean>(true);
-  // const [limit, setLimit] = useState<number>(24);
+  const [characters, setCharacters] = useState<ICharacters[]>([]);
+  const [offset, setOffset] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
   const [value, setValue] = useState<string>('');
-  const [hasMore, setHasMore] = useState<boolean>(true);
+
+  const limit = 24;
 
   const history = useHistory();
 
   useEffect(() => {
-    // setLoading(true);
-    api.get<IAPIResponse>('characters', {
-      params: {
-        limit: 24,
-        offset,
-      },
-    }).then((response) => {
-      setCharacters([...characters, ...response.data.data.results]);
-      setTotal(response.data.data.total);
-      setLoading(false);
-    });
-  }, [offset]);
+    if (!value) {
+      api.get<IAPIResponse>('characters', {
+        params: {
+          limit,
+          offset,
+        },
+      }).then((response) => {
+        setCharacters([...characters, ...response.data.data.results]);
+        setTotal(response.data.data.total);
+        setLoading(false);
+      });
+    }
+  }, [offset, value]);
 
   useEffect(() => {
     if (value) {
@@ -69,7 +67,9 @@ const Home: FC = () => {
           nameStartsWith: value,
         },
       }).then((response) => {
-        setCharacters(response.data.data.results);
+        setTotal(response.data.data.total);
+        setCharacters([...response.data.data.results]);
+        handleHasMore();
       });
     }
   }, [value]);
@@ -79,7 +79,6 @@ const Home: FC = () => {
   }, [characters]);
 
   const handleSearchData = useCallback((data: string) => {
-    setHasMore(false);
     setValue(data);
   }, []);
 
@@ -91,12 +90,19 @@ const Home: FC = () => {
     });
   };
 
+  const handleHasMore = () => {
+    if ((offset + limit) < total) {
+      return (true);
+    }
+    return (false);
+  };
+
   const loader = <div className="loader">Loading scroller...</div>;
 
   return (
     <>
       <Header />
-      <Cover title="Explore the most powerful characters in Marvel">
+      <Cover title="Explore the most powerful characters in Marvel" width="40%">
         <Search handleSearchData={handleSearchData} />
       </Cover>
 
@@ -120,29 +126,31 @@ const Home: FC = () => {
           )}
         <InfiniteScroll
           pageStart={0}
-          hasMore={hasMore}
+          hasMore={handleHasMore()}
           loader={loader}
           loadMore={handleNextPage}
         >
           <div className={css.M__Content}>
             {loading
               ? (
-                Array(20).fill(
-                  <Skeleton
+                Array(20).fill(Skeleton).map((Component, index) => (
+                  <Component
+                    key={index}
                     width={270}
                     height={376}
                     style={{
                       margin: 10,
                       borderRadius: '10px 30px',
                     }}
-                  />,
-                ).map((skeleton) => skeleton)
+                  />
+                ))
               )
               : (
                 characters.map((character) => (
                   <button className={css.MC__btn} type="button" onClick={() => handleNavigate(character)}>
                     <Card
                       key={character.id}
+                      id={character.id}
                       name={character.name}
                       description={character.description}
                       thumbnail={`${character.thumbnail.path}/landscape_xlarge.${character.thumbnail.extension}`}
@@ -151,10 +159,7 @@ const Home: FC = () => {
                 )))}
           </div>
         </InfiniteScroll>
-
-        {!loading && <button className={css.M__BtnLoadMore} onClick={handleNextPage} type="button">Carregar mais</button>}
       </main>
-
       <Footer />
     </>
   );
