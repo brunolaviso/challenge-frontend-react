@@ -1,10 +1,12 @@
 .Main {
-  padding: 32px 0;
+  padding-top: 32px;
 
   display: flex;
   flex-direction: column;
 
+
   .M__Info {
+    // background-color: royalblue;
     width: 100%;
 
     color: #212121;
@@ -33,6 +35,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+
+    .MC__btn {
+      text-decoration: none;
+      border: 0;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      outline: none;
+
+      margin: 10px;
+    }
   }
 
   .M__BtnLoadMore {
@@ -57,13 +70,4 @@
     &:hover { background-color: mix(#F43735, #000, 85%); }
   }
 
-  .MC__btn {
-    text-decoration: none;
-    border: 0;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-
-    margin: 10px;
-  }
 }

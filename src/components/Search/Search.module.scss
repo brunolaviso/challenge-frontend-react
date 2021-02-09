@@ -13,7 +13,8 @@
     border: none;
     border-radius: 20px 0 0 5px;
     font-size: 1.5rem;
-    padding: 8px;
+    padding: 8px 16px;
+    outline: none;
   }
 
   .F__Btn {
@@ -22,6 +23,7 @@
     border: none;
     background-color: #F43735;
     border-radius: 0 5px 20px 0;
+    outline: none;
 
     transition-property: background-color;
     transition-duration: .2s;

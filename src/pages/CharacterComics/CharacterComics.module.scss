@@ -1,3 +1,8 @@
+.Character {
+  width: 100%;
+  margin: 50px 0 -200px;
+}
+
 .Main {
   margin-top: 32px;
 
@@ -22,13 +27,4 @@
       line-height: 1em;
     }
   }
-
-  .M__Character {
-    margin-top: -100px;
-    width: 100%;
-  }
-
-  // .M__Content {
-  //   margin: px 0;
-  // }
 }

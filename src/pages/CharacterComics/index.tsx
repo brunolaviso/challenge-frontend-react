@@ -51,9 +51,8 @@ const CharacterProfile: FC = () => {
 
   const { state } = useLocation<ICharacters>();
 
-  console.log(state.id);
-
   useEffect(() => {
+    window.scrollTo(0, 0);
     api.get<IAPIResponse>(`characters/${state.id}/comics`, {
       params: {
         limit: 24,
@@ -66,13 +65,11 @@ const CharacterProfile: FC = () => {
     });
   }, []);
 
-  console.log(comics);
-
   return (
     <>
       <Header />
       <Cover title="Discover all comics this character took part in">
-        <div className={css.M__Character} style={{ width: '100%', margin: '50px 0 -200px' }}>
+        <div className={css.Character}>
           {loading
             ? (
               <Skeleton width="100%" height="250px" style={{ borderRadius: '10px 50px' }} />
