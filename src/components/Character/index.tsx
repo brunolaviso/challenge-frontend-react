@@ -5,19 +5,16 @@ interface ICharacter {
   id: number,
   name: string,
   description: string,
-  thumbnail: {
-    extension: string,
-    path: string
-  }
+  thumbnail: string
 }
 
 const Character: FC<ICharacter> = ({
-  name, description, thumbnail: { path, extension },
+  name, description, thumbnail,
 }) => (
   <div className={css.Character}>
     <img
       className={css.C__Img}
-      src={`${path}/standard_fantastic.${extension}`}
+      src={thumbnail}
       alt=""
     />
     <div className={css.C__Info}>

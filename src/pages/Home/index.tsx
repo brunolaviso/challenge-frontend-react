@@ -83,10 +83,10 @@ const Home: FC = () => {
   }, []);
 
   const handleNavigate = ({
-    id, name, description, thumbnail,
+    id, name, description, thumbnail: { extension, path },
   }: ICharacters) => {
     history.push(`/characters/${name}/comics`, {
-      id, name, description, thumbnail,
+      id, name, description, thumbnail: `${path}/standard_fantastic.${extension}`,
     });
   };
 
