@@ -1,0 +1,81 @@
+.Link {
+  border: none;
+  text-decoration: none;
+  color: #fff;
+}
+
+.Menu {
+  background-color: #202020;
+
+  .M__Itens {
+    height: 150px;
+
+    color: #fff;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .Mi__Title {
+      font-weight: 700;
+      font-size: 2.25rem;
+      line-height: 1em;
+
+      display: flex;
+      align-items: center;
+
+      .Mit__Img {
+        margin-right: 16px;
+      }
+    }
+
+    .Mi__Btn {
+      height: 60px;
+      width: 180px;
+
+      background-color: #F43735;
+      color: #fff;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 5px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+
+      &:hover { background-color: mix(#F43735, #000, 85%); }
+
+      .Mib__Img {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .Menu {
+    .M__Itens {
+      .Mi__Btn {
+        height: 64px;
+        width: 64px;
+        .Mib__Text { display: none; }
+        .Mib__Img { margin-left: 0; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .Menu {
+    .M__Itens {
+      .Mi__Title { font-size: 1.8rem;
+        .Mit__Img { margin-right: 16px; }
+      }
+    }
+  }
+}
+
+
+

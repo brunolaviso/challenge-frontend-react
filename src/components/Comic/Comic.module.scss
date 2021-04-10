@@ -1,0 +1,43 @@
+.Comic {
+  height: 200px;
+  width: 100%;
+  border-radius: 10px 50px;
+
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+
+  .C__Img {
+    height: 100%;
+    border-radius: 10px 0px 0px 50px;
+  }
+
+  .C__Info {
+    padding: 14px 32px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .CI__Title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.1em;
+  }
+
+  .CI__Details {
+    width: 300px;
+    margin: 16px 0;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .CI__Description {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .CID__NoDescription { color: #cacaca; }
+}
